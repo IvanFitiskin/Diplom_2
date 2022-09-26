@@ -30,10 +30,18 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
-    public ValidatableResponse update(String token, UserCredentials userCredentials) {
+    public ValidatableResponse update(String token, User user) {
         return given()
                 .spec(getBaseSpecWithToken(token))
-                .body(userLoginCredentials)
+                .body(user)
+                .patch(AUTH_PATH + "/user")
+                .then();
+    }
+
+    public ValidatableResponse update(User user) {
+        return given()
+                .spec(getBaseSpec())
+                .body(user)
                 .patch(AUTH_PATH + "/user")
                 .then();
     }
