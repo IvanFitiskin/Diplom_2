@@ -2,6 +2,7 @@ package suites.user;
 
 import client.AuthClient;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import models.User;
@@ -15,6 +16,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
 
+@Epic("User")
 public class LoginUserTest {
 
     private User user;

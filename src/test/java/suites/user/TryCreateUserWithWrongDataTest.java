@@ -6,15 +6,11 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import models.User;
-import models.UserCredentials;
-import models.UserGeneration;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
@@ -25,9 +21,9 @@ public class TryCreateUserWithWrongDataTest {
 
     private AuthClient authClient;
 
-    private String name;
-    private String password;
-    private String email;
+    private final String name;
+    private final String password;
+    private final String email;
 
     public TryCreateUserWithWrongDataTest(String name, String password, String email) {
         this.name = name;
@@ -53,8 +49,8 @@ public class TryCreateUserWithWrongDataTest {
     }
 
     @Test
-    @DisplayName("Создание пользователя")
-    @Description("Обычный позитивный кейс создания нового пользователя")
+    @DisplayName("Негативный тест создания пользователя")
+    @Description("Попытка создания пользователя с неполными/неправильными данными")
     public void createUserWithWrongDataTest() {
         User user = new User(name, password, email);
         ValidatableResponse response = authClient.create(user);

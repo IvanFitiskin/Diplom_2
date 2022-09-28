@@ -2,6 +2,7 @@ package suites.user;
 
 import client.AuthClient;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import models.User;
@@ -16,6 +17,7 @@ import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.junit.Assert.*;
 
+@Epic("User")
 public class UpdateUserTest {
 
     private User user;
@@ -34,7 +36,6 @@ public class UpdateUserTest {
         authClient.deleteExistUser(userCredentials);
         ValidatableResponse response = authClient.create(user);
         token = response.extract().path("accessToken");
-
     }
 
     @After
@@ -49,7 +50,7 @@ public class UpdateUserTest {
     }
 
     @Test
-    @DisplayName("Обновление данных пользователя")
+    @DisplayName("Позитивный тест обновление данных пользователя")
     @Description("Обычный позитивный кейс обновления данных пользователя")
     public void positiveUpdateUserTest() {
         String oldName = user.getName();
@@ -75,7 +76,7 @@ public class UpdateUserTest {
     }
 
     @Test
-    @DisplayName("Обновление данных пользователя")
+    @DisplayName("Негативный тест обновление данных пользователя")
     @Description("Попытка обновления данных пользователя без авторизационного токена")
     public void positiveUpdateUserWithoutTokenTest() {
         ValidatableResponse response = authClient.update(user);
@@ -91,7 +92,7 @@ public class UpdateUserTest {
     }
 
     @Test
-    @DisplayName("Обновление данных пользователя")
+    @DisplayName("Обновление данных пользователя с занятой почтой")
     @Description("Попытка обновления данных пользователя с чужой почтой")
     public void positiveUpdateUserWithExistsEmailTest() {
         String oldEmail = user.getEmail();

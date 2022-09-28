@@ -3,6 +3,7 @@ package suites.order;
 import client.AuthClient;
 import client.OrderClient;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import models.*;
@@ -15,6 +16,7 @@ import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 
+@Epic("Order")
 public class CreateOrderAuthorizedUserTest {
 
     private UserCredentials userCredentials;
@@ -40,7 +42,7 @@ public class CreateOrderAuthorizedUserTest {
     }
 
     @Test
-    @DisplayName("Создание заказа")
+    @DisplayName("Создание заказа с токеном юзера")
     @Description("Обычный позитивный кейс создания заказа для авторизованного пользователя")
     public void positiveCreateOrderWithTokenTest() {
         Order order = OrderGeneration.getDefault();
@@ -63,7 +65,7 @@ public class CreateOrderAuthorizedUserTest {
     }
 
     @Test
-    @DisplayName("Создание заказа")
+    @DisplayName("Создание заказа с токеном юзера без без ингредиентов")
     @Description("Попытка создания заказа без ингредиентов для авторизованного пользователя")
     public void tryCreateOrderWithInvalidDataWithTokenTest() {
         String[] ingredients = {};

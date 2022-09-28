@@ -21,7 +21,7 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
-    @Step("Отправка запроса на авторизацию нового пользователя")
+    @Step("Отправка запроса на авторизацию пользователя")
     public ValidatableResponse login(UserCredentials userCredentials) {
         return given()
                 .spec(getBaseSpec())
@@ -30,6 +30,7 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
+    @Step("Отправка запроса на обновление пользователя")
     public ValidatableResponse update(String token, User user) {
         return given()
                 .spec(getBaseSpecWithToken(token))
@@ -38,6 +39,7 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
+    @Step("Отправка запроса на обновление пользователя (без токена)")
     public ValidatableResponse update(User user) {
         return given()
                 .spec(getBaseSpec())
@@ -46,6 +48,7 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
+    @Step("Отправка запроса на логаут пользователя")
     public ValidatableResponse logout(String refreshToken) {
         return given()
                 .spec(getBaseSpec())
@@ -54,6 +57,7 @@ public class AuthClient extends RestClient {
                 .then();
     }
 
+    @Step("Отправка запроса на удаление пользователя")
     public ValidatableResponse delete(String token, String name) {
         return given()
                 .spec(getBaseSpecWithToken(token))

@@ -57,8 +57,8 @@ public class TryLoginUserWithWrongDataTest {
     }
 
     @Test
-    @DisplayName("Создание пользователя")
-    @Description("Обычный позитивный кейс создания нового пользователя")
+    @DisplayName("Негативный тест авторизации пользователя")
+    @Description("Попытка авторизации пользователя с неполными/неправильными данными")
     public void createUserWithWrongDataTest() {
         ValidatableResponse response = authClient.login(userCredentials);
 

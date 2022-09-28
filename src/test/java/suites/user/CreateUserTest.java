@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-@Epic("Create user")
+@Epic("User")
 public class CreateUserTest {
 
     private User user;
@@ -66,8 +66,8 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Создание пользователя")
-    @Description("Обычный позитивный кейс создания нового пользователя")
+    @DisplayName("Создание пользователя с уже использованными данными")
+    @Description("Попытка создания нового пользователя с уже использованными данными")
     public void tryCreateUserTwiceTest() {
         ValidatableResponse response = authClient.create(user);
 

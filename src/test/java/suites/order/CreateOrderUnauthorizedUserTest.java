@@ -1,18 +1,18 @@
 package suites.order;
 
-import client.AuthClient;
 import client.OrderClient;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import models.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.*;
 
+@Epic("Order")
 public class CreateOrderUnauthorizedUserTest {
 
     private OrderClient orderClient;
@@ -23,8 +23,8 @@ public class CreateOrderUnauthorizedUserTest {
     }
 
     @Test
-    @DisplayName("Создание заказа")
-    @Description("Обычный позитивный кейс создания заказа для авторизованного пользователя")
+    @DisplayName("Создание заказа без токена юзера")
+    @Description("Создания заказа для неавторизованного пользователя")
     public void positiveCreateOrderWithoutTokenTest() {
         Order order = OrderGeneration.getDefault();
         ValidatableResponse response = orderClient.create(order);
