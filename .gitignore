@@ -1,1 +1,6 @@
 .idea/*
+
+# allure
+.allure
+
+target/*
