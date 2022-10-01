@@ -12,10 +12,10 @@ public class AuthClient extends RestClient {
     private static final String AUTH_PATH = "/api/auth";
 
     @Step("Отправка запроса на создание нового пользователя")
-    public ValidatableResponse create(User userCredentials) {
+    public ValidatableResponse create(User user) {
         return given()
                 .spec(getBaseSpec())
-                .body(userCredentials)
+                .body(user)
                 .when()
                 .post(AUTH_PATH + "/register")
                 .then();
